@@ -1,0 +1,14 @@
+<?php
+
+session_start();
+
+if(isset($_SESSION['ADMIN']))
+{
+		unset($_SESSION['ADMIN']);
+		
+		if(!isset ($_SESSION['ADMIN']))
+			{
+			   header("location:adminlog.html");
+			}
+}
+?>

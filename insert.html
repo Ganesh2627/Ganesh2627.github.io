@@ -1,0 +1,39 @@
+<?php
+
+include("config.html");
+if($_SERVER['REQUEST_METHOD']=='POST')
+{
+	$k=$_POST['addm'];
+	$a=$_POST['l_name'];
+	
+	$b=$_POST['f_name'];
+	$c=$_POST['gender'];
+	$d=$_POST['dob'];
+	$e=$_POST['addr'];
+	$f=$_POST['city'];
+	$g=$_POST['region'];
+	$h=$_POST['zipcode'];
+	$i=$_POST['phno'];
+	$j=$_POST['Email'];
+	
+	
+	$qry= mysql_query("INSERT INTO project1_hms.patients(p_adddate,lastname,firstname,gender,dob,address,city,region,zipcode,phno,email)
+	values('$k','$a','$b','$c','$d','$e','$f','$g','$h','$i','$j')");
+	
+	if($qry==true)
+	{
+		
+		echo header("location:emergency.html");
+	  //echo "<center>"."<b>"."Patient Details Submitted"."</b>"."</center>";
+	}
+	else
+	{
+	  echo"not".mysql_error();
+	 }
+	}
+	else 
+	{
+	  echo"request method is not post";
+	  }
+	  ?>
+	

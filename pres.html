@@ -1,0 +1,45 @@
+<?php
+
+include("config.html");
+if($_SERVER['REQUEST_METHOD']=='POST')
+{
+
+	
+	$a=$_POST['name'];
+	$b=$_POST['phno'];
+	$c=$_POST['date'];
+	$d=$_POST['dname'];
+	$e=$_POST['medi'];
+	$f=$_POST['dia'];
+	$g=$_POST['inst'];
+	
+	
+	
+	$qry= mysql_query("INSERT INTO project1_hms.prescribe(p_name,phno,pres_date,doc_name,medicine,diagnosis,instructions)
+	values('$a','$b','$c','$d','$e','$f','$g')");
+	
+	if($qry==true)
+	{
+	
+		//echo header("location:adminlog.php");
+	  echo "<center>"."<b>"."Prescription Credited"."</b>"."</center>";
+	  //"<button type="Back" name="Back"><a href="adminlog.php"></a><button>"
+	}
+	else
+	{
+	  echo"not".mysql_error();
+	 }
+	}
+	else 
+	{
+	  echo"request method is not post";
+	  }
+	  ?>
+	
+	<html>
+	<body background="back.jpg">
+	<form action="" method="POST".
+	<button type="Back" name="Back"><a href="adminlog.html">Back To Admin Panel</a></button>
+	</form>
+	</body>
+	</html>

@@ -1,0 +1,49 @@
+<?php
+include("config.php");
+if($_SERVER['REQUEST_METHOD']=='POST')
+{
+
+//	$a=$_POST['date'];
+
+	$a=$_POST['phno'];
+
+	$b=$_POST['addr'];
+
+	
+	
+	
+	$qry= mysql_query("Update project1_hms.patients set address='$b'  Where phno='$a' ");
+	
+	if($qry==true)
+	{
+		
+	  echo "<center>"."</br></br></br></br>"."<b>"."Patient Address updated successfully...."."</b>"."</center>"."</br>";
+	}
+	else
+	{
+	  echo"not".mysql_error();
+	 }
+	}
+	else 
+	{
+	  echo"request method is not post";
+	  }
+	  ?>
+	
+	
+	<html>
+	<body background="back.jpg">
+	<center>
+	&emsp;
+	&emsp;
+	&emsp;
+	.
+	.
+	.
+	.
+	.
+	
+	<button><a href="home.html">Back to admin panel</a></button>
+	</center>
+	</body>
+	</html>

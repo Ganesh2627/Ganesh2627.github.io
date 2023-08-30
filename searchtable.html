@@ -1,0 +1,85 @@
+<html>
+<head>
+<style>
+
+  table 
+ {
+	 border-style:solid;
+	 
+	 border-width:5px;
+	 
+	 border-color=:Black;
+	 
+ }
+ 
+ </style>
+</head>
+<h1>View  Database</h1>
+
+ <BODY>
+<form action="" method="POST">
+
+Search By User Value:<br>
+
+	 <textarea rows="1" cols="40" name="searchname"></textarea></br></br>
+	
+	
+	<input type="submit" name="search">
+	
+	<button><a href="home.php">Back to admin panel</a></button>
+	
+	</form>
+	</BODY>
+	</html>
+	
+	
+	<?php
+	require_once("config.php");
+	if($_SERVER['REQUEST_METHOD']=='POST')
+	{
+		
+		$search=$_POST['searchname'];
+		$qry= mysql_query("Select * from patients where lastname like '%$search%' or firstname like '%$search%' OR dob like '%$search%' OR address like '%$search%' OR phno like '%$search%' OR email like '%$search%'");
+		
+	echo "<table border='1'>
+	
+	<tr>
+	
+	<th>ID</th>
+	
+	<th>Lastname</th>
+	
+	<th>Firstname</th>
+	
+	<th>Email</th>
+	
+	</tr>";
+	
+	while($row=mysql_fetch_array($qry))
+	{
+		
+	?>	
+	<FORM>
+	<tr>
+	
+				<td><?php echo $row['p_id'];?></td>
+				<td><?php echo $row['lastname'];?></td>
+				<td><?php echo $row['firstname'];?></td>
+				<td><?php echo $row['email'];?></td>
+				
+				<td><a href="update11.php?edit=<?phij[8pp echo $row['p_id'];?>"<button>edit</button></a></td>
+				
+		</tr>
+	</form>
+	<?php
+	}
+
+		echo "</table>";
+		
+		
+	
+	
+	}
+	?>
+
+

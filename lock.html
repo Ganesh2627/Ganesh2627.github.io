@@ -1,0 +1,16 @@
+<?php
+session_start();
+include("config.html");
+if(!isset($_SESSION['ADMIN']))
+{
+header("location:adminlog.html");
+}
+$user_check=$_SESSION['ADMIN'];
+
+$qry=mysql_query("Select * from reception where username='$user_check'");
+
+$row=mysql_fetch_array($qry);
+
+echo "Welcome ".$data=$row['username'];
+
+?>

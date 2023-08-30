@@ -1,0 +1,126 @@
+<html>
+<head>
+<style>
+
+  table 
+ {
+	 border-style:solid;
+	 
+	 border-width:5px;
+	 
+	 border-color=:Black;
+	 
+ }
+ 
+ </style>
+</head>
+<h1>View Patient Database</h1>
+
+ <BODY>
+<form action="" method="POST">
+
+Search By User Value:<br>
+
+	 <textarea rows="1" cols="40" name="searchname"></textarea></br></br>
+	
+	
+	<input type="submit" name="search">
+	
+	<button><a href="home.html">Back to admin panel</a></button>
+	
+	</form>
+	</BODY>
+	</html>
+	
+	
+	<?php
+	require_once("config.html");
+	if($_SERVER['REQUEST_METHOD']=='POST')
+	{
+		
+		$search=$_POST['searchname'];
+		$qry= mysql_query("Select * from project1_hms.patients where lastname like '%$search%' or firstname like '%$search%' OR dob like '%$search%' OR address like '%$search%' OR phno like '%$search%' OR email like '%$search%'");
+		
+	echo "<table border='1'>
+<tr>
+</tr>";
+	
+	while($row=mysql_fetch_array($qry))
+	{
+		
+	//echo $row['p_id']."</br>";
+	//echo $row['p_adddate'];
+		//echo $row['lastname'];
+		
+		//echo $row['firstname']."</br>";
+		//echo $row['gender']."</br>";
+		//echo $row['dob']."</br>";
+		//echo $row['address']."</br>";
+		//echo $row['phno']."</br>";
+		//echo $row['email']."</br></br></br>";-->
+		
+		
+		echo "<tr>";
+		echo "<th>ID</th>";
+		echo "<td>".$row['p_id']."</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<th>Patient Addmission Date</th>";
+		echo "<td>".$row['p_adddate']."</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<th>Last Name</th>";
+		echo "<td>".$row['lastname']."</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<th>First Name</th>";
+		echo "<td>".$row['firstname']."</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<th>Gender</th>";
+		echo "<td>".$row['gender']."</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<th>Birth Date </th>";
+		echo "<td>".$row['dob']."</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<th>Address</th>";
+		echo "<td>".$row['address']."</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<th>City</th>";
+		echo "<td>".$row['city']."</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<th>Region</th>";
+		echo "<td>".$row['region']."</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<th>Contact Number</th>";
+		echo "<td>".$row['phno']."</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<th>Email</th>";
+		echo "<td>".$row['email']."</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<th>Discharge Date</th>";
+		echo "<td>".$row['discharge']."</td>";
+		echo "</tr>"."<br><br><br>";
+		
+	
+	}
+	}
+	?>

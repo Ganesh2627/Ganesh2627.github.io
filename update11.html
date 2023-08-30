@@ -1,0 +1,51 @@
+<?php
+include("config.php");
+
+$get=$_GET['edit'];
+
+if(isset($_POST['submit']))
+
+{
+
+		$lastname=$_POST['lname'];
+		$fname=$_POST['fname'];
+		$email=$_POST['email'];
+		
+		$qry1=mysql_query("Update patients set lastname='$lastname',firstname='$fname',email='$email' WHERE p_id='$get'");
+		
+		if($qry1)
+	{
+	
+		echo "Updated Successfully....:)";
+	}
+		else {
+		
+		echo "not".mysql_error();
+		
+		}
+}
+
+$qry=mysql_query("select * from project1_hms.patients where p_id='$get'");
+
+while($row=mysql_fetch_array($qry))
+{
+	?>
+	<html>
+	<body>
+	<form action="" method="POST">
+	<input type="text" value="<?php echo $row['lastname'];?>" name="lname">
+	<input type="text" value="<?php echo $row['firstname'];?>" name="fname">
+	<input type="text" value="<?php echo $row['email'];?>" name="email">
+	
+	<button type="submit" name="submit">Update</button>
+	</form>+-
+	
+	
+	
+	
+	
+	</html>
+	<?php
+}	
+	
+	?>

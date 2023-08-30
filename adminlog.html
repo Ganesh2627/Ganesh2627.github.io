@@ -1,0 +1,80 @@
+<?php
+
+session_start();
+
+include("config.html");
+if(isset($_SESSION['ADMIN']))
+{
+header("location:home.html");
+}
+if($_SERVER['REQUEST_METHOD']=='POST')
+{
+
+$adminusername=$_POST['name'];
+$adminpass=$_POST['pass'];
+$sql="Select r_id from project1_hms.reception where username='$adminusername' AND password='$adminpass' ";
+
+	$result=mysql_query($sql);
+	$row=mysql_fetch_array($result);
+	
+	
+	$count=mysql_num_rows($result);
+	
+	if($count==1)
+	
+	{
+	   $_SESSION['ADMIN']=$adminusername;
+	   header("location:home.php");
+	}
+	
+	else 
+	{
+	  echo "Please try again......";
+	  
+	}
+	}
+	?>
+	
+
+	<html>
+<head>
+<style>
+
+table 
+
+{
+
+  border-style:solid;
+  border-width:5px;
+  border-color:black;
+}
+</style>
+</head>
+
+  
+<body background="rec.jpg">
+<center></br></br>
+<form id="admin" action="" method="POST">
+
+<table border='10'>
+<tr>
+<h3>LOGIN PAGE FOR RECEPTIONIST</h3>
+</tr>
+<tr>
+<td>USERNAME      &emsp;&emsp; <input type="text" name="name" id="pass" value="" placeholder="Enter Username"> &emsp;&emsp;</br></br>
+</tr></br></br>
+<tr>
+<td>PASSWORD  &emsp;&emsp;<input type="password" name="pass" id="pass" value="" placeholder="Enter Password"> &emsp;&emsp;</br></br>
+</tr>
+<th>
+<input type="submit" name="sub" value="Login"></th>
+</table>
+
+</form></center>
+</body>
+</html>
+
+
+	
+	
+	
